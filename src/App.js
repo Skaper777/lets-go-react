@@ -3,20 +3,24 @@ import './App.scss';
 import Event from './Event/Event'
 
 class App extends Component {
-  state = {
-    events: [
-       {
-          name: 'Run',
-          members: 6
-       },
-       {
-          name: 'Cycle',
-          members: 10
-       }
-    ],
-    pageTitle: "Hello, Let 's Go!",
-    showEvents: false
-  }  
+  constructor(props) {    
+    super(props) 
+
+    this.state = {
+      events: [
+         {
+            name: 'Run',
+            members: 6
+         },
+         {
+            name: 'Cycle',
+            members: 10
+         }
+      ],
+      pageTitle: "Hello, Let 's Go!",
+      showEvents: false
+    } 
+  } 
 
   toggleEventsHandler = () => {
     this.setState({
@@ -42,7 +46,7 @@ class App extends Component {
     this.setState({events})
   }
 
-  render() {
+  render() {    
     const divStyle = {
       textAlign: 'center'
     }
@@ -63,7 +67,8 @@ class App extends Component {
 
     return ( 
       <div style = {divStyle}>
-        <h1>{this.state.pageTitle}</h1>
+        {/* <h1>{this.state.pageTitle}</h1> */}
+        <h1>{this.props.title}</h1>
 
         <button 
           onClick={this.toggleEventsHandler}> 
