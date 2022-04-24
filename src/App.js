@@ -1,6 +1,10 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import './App.scss';
 import Event from './Event/Event'
+import Counter from './Counter/Counter'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+
+export const ClickedContext = React.createContext(false)
 
 class App extends Component {
   constructor(props) {    
@@ -18,7 +22,8 @@ class App extends Component {
          }
       ],
       pageTitle: "Hello, Let 's Go!",
-      showEvents: false
+      showEvents: false,
+      clicked: false
     } 
   } 
 
@@ -55,13 +60,15 @@ class App extends Component {
 
     if (this.state.showEvents) events = this.state.events.map((event, index) => {
       return (
-        <Event 
-          key={index}
-          name={event.name} 
-          members={event.members}
-          onChangeName={e => this.changeNameHandler(e.target.value, index)}
-          onDelete={this.deleteHandler.bind(this, index)}
-        />
+        <ErrorBoundary key={index}>
+          <Event            
+            name={event.name} 
+            members={event.members}
+            index={index}
+            onChangeName={e => this.changeNameHandler(e.target.value, index)}
+            onDelete={this.deleteHandler.bind(this, index)}
+          />
+        </ErrorBoundary>        
       )          
     })
 
@@ -70,9 +77,17 @@ class App extends Component {
         {/* <h1>{this.state.pageTitle}</h1> */}
         <h1>{this.props.title}</h1>
 
+        <ClickedContext.Provider value={this.state.clicked}>
+          <Counter/>
+        </ClickedContext.Provider>        
+
+        <hr/>
+
         <button 
           onClick={this.toggleEventsHandler}> 
             Show events!</button>
+
+        <button onClick={() => this.setState({clicked: true})}>Change clicked</button>    
 
         { events }    
       </div>
