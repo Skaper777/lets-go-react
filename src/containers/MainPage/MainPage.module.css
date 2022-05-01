@@ -1,0 +1,8 @@
+.MainPage {
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
+  flex-grow: 1;
+  width: 100%;
+  background: linear-gradient(90deg, #1245b2 0%, #9929d6 100%);
+}
