@@ -3,7 +3,7 @@ import classes from './Event.module.scss'
 import withClass from '../hoc/withClass'
 import PropTypes from 'prop-types'
 
-class Event extends React.Component {  
+class EventItem extends React.Component {  
   constructor(props) {
     super(props)
 
@@ -37,7 +37,7 @@ class Event extends React.Component {
   }
 }
 
-Event.propTypes = {
+EventItem.propTypes = {
   name: PropTypes.string.isRequired,
   members: PropTypes.number,
   index: PropTypes.number,
@@ -45,4 +45,4 @@ Event.propTypes = {
   onDelete: PropTypes.func
 }
 
-export default withClass(Event, classes.Event)
+export default withClass(EventItem, classes.Event)

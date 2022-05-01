@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import './App.scss';
-import Event from './Event/Event'
-import Counter from './Counter/Counter'
+import EventItem from './Event/EventItem'
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 export const ClickedContext = React.createContext(false)
@@ -61,7 +60,7 @@ class App extends Component {
     if (this.state.showEvents) events = this.state.events.map((event, index) => {
       return (
         <ErrorBoundary key={index}>
-          <Event            
+          <EventItem            
             name={event.name} 
             members={event.members}
             index={index}
@@ -76,12 +75,6 @@ class App extends Component {
       <div style = {divStyle}>
         {/* <h1>{this.state.pageTitle}</h1> */}
         <h1>{this.props.title}</h1>
-
-        <ClickedContext.Provider value={this.state.clicked}>
-          <Counter/>
-        </ClickedContext.Provider>        
-
-        <hr/>
 
         <button 
           onClick={this.toggleEventsHandler}> 
