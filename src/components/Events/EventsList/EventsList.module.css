@@ -1,0 +1,8 @@
+.EventsList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.EventsList h2 {
+  text-align: center;
+}

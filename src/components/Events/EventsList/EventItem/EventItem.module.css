@@ -1,0 +1,12 @@
+.EventItem {
+  border: 1px solid white;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.EventItem h3 {
+  text-align: center;
+}

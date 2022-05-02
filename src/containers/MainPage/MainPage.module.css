@@ -1,8 +1,24 @@
 .MainPage {
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   padding: 100px 0;
   flex-grow: 1;
   width: 100%;
   background: linear-gradient(90deg, #1245b2 0%, #9929d6 100%);
+}
+
+.MainPage h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.MainPageContainer {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.MainPageEvents {
+  display: flex;
+  justify-content: space-evenly;
 }
