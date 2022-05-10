@@ -1,9 +1,10 @@
 import classes from './EventItem.module.css'
+import Button from '../../../Ui/Button/Button'
 
 const EventItem = (props) => {
-  let button = <button onClick={() => props.onJoinClick(props.eventItem.id)}>Join</button>
+  let btn = <Button onClick={() => props.onJoinClick(props.eventItem.id)}>Join</Button>
 
-  if (props.isMyEvent) button = <button onClick={() => props.onLeaveClick(props.eventItem.id)}>Leave</button>
+  if (props.isMyEvent) btn = <Button onClick={() => props.onLeaveClick(props.eventItem.id)}>Leave</Button>
 
   return (
     <li className={classes.EventItem}>
@@ -12,7 +13,7 @@ const EventItem = (props) => {
       <p>Location: <b>{props.eventItem.location}</b></p>
       <p>Members: <b>{props.eventItem.members}</b></p>
       <div>       
-        {button}
+        {btn}
       </div>    
     </li>
   )
