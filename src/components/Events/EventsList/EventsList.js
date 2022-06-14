@@ -4,16 +4,16 @@ import EventItem from './EventItem/EventItem'
 const EventsList = (props) => {
   let title = 'Events list'
 
-  if (props.isMyEvents) title = 'My events'
+  if (props.isMyEvents) title = 'My events'  
 
-  return (
+  return (    
     <div className={classes.EventsList}>
       <h2>{title}</h2>
       <ul>
         {
           props.eventsList.map((item, index) => {
             return (
-              <EventItem 
+              <EventItem                
                 eventItem={item} 
                 key={index} 
                 isMyEvent={props.isMyEvents} 

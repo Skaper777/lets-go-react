@@ -6,11 +6,11 @@ const EventItem = (props) => {
   let btn = <Button onClick={() => props.onJoinClick(props.eventItem.id)}>Join</Button>
 
   if (props.isMyEvent) btn = <Button onClick={() => props.onLeaveClick(props.eventItem.id)}>Leave</Button>
-
+  
   return (
     <li className={classes.EventItem}>
-      <h3>
-        <Link to='/'>{props.eventItem.title}</Link>
+      <h3>       
+        <Link to={'events/' + props.eventItem.id}>{props.eventItem.title}</Link>
       </h3>
       <p>Type: <b>{props.eventItem.type}</b></p>
       <p>Location: <b>{props.eventItem.location}</b></p>

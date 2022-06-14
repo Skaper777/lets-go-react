@@ -61,7 +61,7 @@ class MainPage extends Component {
     })   
   }
 
-  render() {
+  render() {    
     const list = this.state.eventsList.length ? 
       <EventsList 
         onJoinClick={this.onJoinHandler} 

@@ -22,7 +22,7 @@ class Drawer extends React.Component {
   renderLinks() {
     return links.map((link, index) => {
       return (
-        <li key={index}>
+        <li key={index} onClick={this.props.onClose}>
           <NavLink 
             to={link.url} 
             style={({ isActive }) =>
