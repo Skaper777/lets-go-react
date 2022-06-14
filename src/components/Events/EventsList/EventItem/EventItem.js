@@ -1,5 +1,6 @@
 import classes from './EventItem.module.css'
 import Button from '../../../Ui/Button/Button'
+import { Link } from "react-router-dom";
 
 const EventItem = (props) => {
   let btn = <Button onClick={() => props.onJoinClick(props.eventItem.id)}>Join</Button>
@@ -8,7 +9,9 @@ const EventItem = (props) => {
 
   return (
     <li className={classes.EventItem}>
-      <h3>{props.eventItem.title}</h3>
+      <h3>
+        <Link to='/'>{props.eventItem.title}</Link>
+      </h3>
       <p>Type: <b>{props.eventItem.type}</b></p>
       <p>Location: <b>{props.eventItem.location}</b></p>
       <p>Members: <b>{props.eventItem.members}</b></p>

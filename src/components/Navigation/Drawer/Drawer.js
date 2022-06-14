@@ -1,17 +1,35 @@
 import React from 'react'
 import Backdrop from '../../Ui/Backdrop/Backdrop'
 import classes from './Drawer.module.css'
+import { NavLink } from "react-router-dom";
 
 const links = [
-  1, 2, 3
+  {
+    title: 'Home',
+    url: '/'
+  },
+  {
+    title: 'About',
+    url: 'about'
+  }
 ]
+
+const activeStyle = {
+  textDecoration: "underline",
+};
 
 class Drawer extends React.Component {
   renderLinks() {
     return links.map((link, index) => {
       return (
         <li key={index}>
-          <a href=''>Link {link}</a>
+          <NavLink 
+            to={link.url} 
+            style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+          }>
+            {link.title}
+          </NavLink>
         </li>
       )
     })

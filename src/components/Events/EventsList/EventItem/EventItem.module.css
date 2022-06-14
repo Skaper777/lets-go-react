@@ -10,3 +10,7 @@
 .EventItem h3 {
   text-align: center;
 }
+
+.EventItem h3 a {
+  color: white
+}
