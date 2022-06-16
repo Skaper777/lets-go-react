@@ -4,7 +4,11 @@ import { useParams } from "react-router-dom";
 function EventPage(props) {  
   let {id} = useParams()
 
-  return <h1>Event page {id}</h1>
+  return (
+    <div className="container">
+      <h1>Event page {id}</h1>
+    </div>
+  )  
 }
 
 export default EventPage

@@ -1,6 +1,7 @@
 import './App.css';
 import Layout from './hoc/Layout/Layout';
 import MainPage from './routes/MainPage/MainPage';
+import Auth from './routes/Auth/Auth';
 import About from './routes/About/About';
 import EventPage from './routes/Events/Event/Event';
 import { useRoutes } from 'react-router-dom'
@@ -10,6 +11,10 @@ function App() {
     {
       path: "/",
       element: <MainPage /> 
+    },
+    {
+      path: "auth",
+      element: <Auth /> 
     },
     {
       path: "events/:id",

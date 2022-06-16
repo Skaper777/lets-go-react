@@ -31,7 +31,7 @@ class MainPage extends Component {
     ]
   }
 
-  onJoinHandler = (eventId) => {
+  onJoinHandler = (eventId) => {    
     const newEventsList = [...this.state.eventsList] 
     const newMyEvents = [...this.state.myEvents]    
 
@@ -79,7 +79,7 @@ class MainPage extends Component {
 
     return (
       <div className={classes.MainPage}>
-        <div className={classes.MainPageContainer}>
+        <div className='container'>
           <h1>Let'sGo!</h1>
           <div className={classes.MainPageEvents}>
             {myList}
