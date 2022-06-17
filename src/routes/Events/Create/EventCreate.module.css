@@ -1,0 +1,15 @@
+.EventCreate {
+  padding-top: 100px;
+}
+
+.EventCreate form {
+  max-width: 600px;
+  margin: 50px auto;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+  display: flex;
+  flex-direction: column;
+}

@@ -8,6 +8,7 @@
   font-weight: bold;
   background: none;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .Button:focus {
@@ -18,10 +19,9 @@
   box-shadow: inset 2px 2px 1px rgba(0, 0, 0, .3);
 }
 
-.Button:disabled {
-  background: #ccc;
-  color: black;
-  cursor: not-allowed;
+.Button:disabled {  
+  opacity: .4;  
+  pointer-events: none;
 }
 
 .primary {

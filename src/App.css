@@ -13,6 +13,26 @@
   margin: 0 auto;
 }
 
+.button {
+  display: inline-block;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid rgb(41, 189, 164);
+  color: rgb(41, 189, 164);
+  text-transform: uppercase;
+  font-weight: bold;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button--primary {
+  background: #2884f6;
+  color: white;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -34,11 +54,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

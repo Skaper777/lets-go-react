@@ -4,6 +4,7 @@ import MainPage from './routes/MainPage/MainPage';
 import Auth from './routes/Auth/Auth';
 import About from './routes/About/About';
 import EventPage from './routes/Events/Event/Event';
+import EventCreate from './routes/Events/Create/EventCreate';
 import { useRoutes } from 'react-router-dom'
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
       element: <Auth /> 
     },
     {
+      path: "events/create",
+      element: <EventCreate /> 
+    },
+    {
       path: "events/:id",
       element: <EventPage />
     },
@@ -26,7 +31,11 @@ function App() {
     },
     {
       path: '*',
-      element: <h1>Error!</h1>
+      element: (
+        <div className='container'>
+          <h1>Ooops! Page not found</h1>
+        </div>
+      )
     }      
   ]
 

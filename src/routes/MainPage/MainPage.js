@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import EventsList from "../../components/Events/EventsList/EventsList";
 import classes from './MainPage.module.css'
+import Button from '../../components/Ui/Button/Button'
+import classNames from 'classnames'
+import { Link } from "react-router-dom";
 
 class MainPage extends Component {
   state = {
@@ -79,12 +82,16 @@ class MainPage extends Component {
 
     return (
       <div className={classes.MainPage}>
-        <div className='container'>
+        <div className={classNames(classes.MainPageContainer, 'container')}>
           <h1>Let'sGo!</h1>
           <div className={classes.MainPageEvents}>
             {myList}
             {list}              
           </div>
+
+          <Link style={{alignSelf: 'center'}} className="button button--primary" to={'events/create'}>
+            Create your own event!
+          </Link>          
         </div>        
       </div>
     )
