@@ -5,6 +5,8 @@
   padding: 10px;
   width: 300px;
   margin-bottom: 20px;
+  background: rgba(0, 0, 0, .2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
 }
 
 .EventItem h3 {

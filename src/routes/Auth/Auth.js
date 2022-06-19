@@ -2,40 +2,23 @@ import { Component } from "react";
 import classes from './Auth.module.css'
 import Button from '../../components/Ui/Button/Button'
 import Input from '../../components/Ui/Input/Input'
-
-function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(email)
-}
+import {createControl, onChangeHandler} from '../../form/formFramework'
 
 class Auth extends Component {
   state = {
     isFormValid: false,
     formControls: {
-      email: {
-        value: '',
-        type: 'email',
-        label: 'Email',
-        errorMsg: 'Not valid email!',
-        valid: false,
-        touched: false,
-        validation: {
-          required: true,
-          email: true
-        }
-      },
-      password: {
-        value: '',
-        type: 'password',
-        label: 'Password',
-        errorMsg: 'Not valid password!',
-        valid: false,
-        touched: false,
-        validation: {
-          required: true,
-          minLength: 6
-        }
-      }
+      email: createControl({
+        label: 'Email',     
+        type: 'email',   
+        errorMsg: "Not valid email!"
+      }, {required: true, email: true}),  
+           
+      password: createControl({
+        label: 'Password',     
+        type: 'password',   
+        errorMsg: "Not valid password!"
+      }, {required: true, minLength: 6})       
     }
   }
 
@@ -48,48 +31,6 @@ class Auth extends Component {
   }
 
   submitHandler = e => e.preventDefault()  
-
-  validateControl(value, validation) {
-    if (!validation) return true
-
-    let isValid = true 
-
-    if (validation.required) {
-      isValid = value.trim() !== '' && isValid
-    }
-
-    if (validation.email) {
-      isValid = validateEmail(value) && isValid
-    }
-
-    if (validation.minLength) {
-      isValid = value.length >= validation.minLength && isValid
-    }
-
-    return isValid
-  }
-
-  onChangeHandler = (e, controlName) => {
-    const formControls = {...this.state.formControls}
-    const control = {...formControls[controlName]}
-
-    control.value = e.target.value 
-    control.touched = true
-    control.valid = this.validateControl(control.value, control.validation)
-
-    formControls[controlName] = control
-
-    let isFormValid = true 
-
-    Object.keys(formControls).forEach(name => {
-      isFormValid = formControls[name].valid
-    })
-
-    this.setState({
-      formControls,
-      isFormValid
-    })
-  }
 
   renderInputs() {
     return Object.keys(this.state.formControls).map((controlName, i) => {
@@ -105,7 +46,7 @@ class Auth extends Component {
           label={control.label}
           shouldValidate={!!control.validation}
           errorMsg={control.errorMsg}
-          onChange={e => this.onChangeHandler(e, controlName)}
+          onChange={e => onChangeHandler.call(this, e, controlName)}
         />
       )
     })    
