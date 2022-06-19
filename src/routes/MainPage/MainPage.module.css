@@ -16,8 +16,8 @@
   text-align: center;
 }
 
-.MainPageEvents {
-  display: flex;
+.MainPageEvents { 
+  display: flex;  
   justify-content: space-evenly;
   margin-bottom: 40px;
 }

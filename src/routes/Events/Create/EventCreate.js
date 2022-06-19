@@ -5,7 +5,8 @@ import Input from '../../../components/Ui/Input/Input'
 import Select from '../../../components/Ui/Select/Select'
 import { Link } from "react-router-dom"
 import {createControl, onChangeHandler, onSelectHandler} from '../../../form/formFramework'
-import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
+import Auxiliary from "../../../hoc/Auxiliary/Auxiliary"
+import axios from "axios"
 
 function createFormControls() {
   return {
@@ -46,16 +47,25 @@ class EventCreate extends Component {
     formControls: createFormControls()
   }
 
-  submitHandler = e => {    
+ submitHandler = async (e) => {    
     e.preventDefault()
 
-    const eventData = {}
+    try {
+      const eventData = {}
 
-    for (let controlName in this.state.formControls) {      
-      eventData[controlName] = this.state.formControls[controlName].value
-    }
+      for (let controlName in this.state.formControls) {      
+        eventData[controlName] = this.state.formControls[controlName].value
+      }              
 
-    console.log(eventData)
+      await axios.post('https://letsgo-react-default-rtdb.europe-west1.firebasedatabase.app/events.json', eventData)
+
+      this.setState({
+        isFormValid: false,
+        formControls: createFormControls()
+      })
+    } catch (error) {
+      console.error(error)
+    }     
   } 
 
   cancelHandler = () => {}   

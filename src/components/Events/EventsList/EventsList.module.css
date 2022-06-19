@@ -1,6 +1,22 @@
+.EventsList {
+  width: 100%;  
+}
+
 .EventsList ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style: none;
   padding: 0;
+}
+
+.EventsListAlone ul { 
+  flex-direction: row; 
+  justify-content: space-between; 
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 650px;
 }
 
 .EventsList h2 {

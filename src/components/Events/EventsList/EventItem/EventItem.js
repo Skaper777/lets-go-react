@@ -14,6 +14,7 @@ const EventItem = (props) => {
       </h3>
       <p>Type: <b>{props.eventItem.type}</b></p>
       <p>Location: <b>{props.eventItem.location}</b></p>
+      <p>Date: <b>{props.eventItem.date}</b></p>
       <p>Members: <b>{props.eventItem.members}</b></p>
       <div>       
         {btn}
