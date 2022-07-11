@@ -1,106 +1,84 @@
-import React, {Component} from "react";
+import { useState, useEffect } from 'react';
 import EventsList from "../../components/Events/EventsList/EventsList";
 import classes from './MainPage.module.css'
 import classNames from 'classnames'
 import { Link } from "react-router-dom"
-import axios from "axios"
 import Loader from "../../components/Ui/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getEvents } from "../../store/features/events/eventsListSlice";
 
-class MainPage extends Component {
-  state = {
-    eventsList: [],
-    myEvents: [],
-    loading: true
-  }
+function MainPage() {   
+  const [loading, setLoading] = useState(true)  
 
-  onJoinHandler = (eventId) => {    
-    const newEventsList = [...this.state.eventsList] 
-    const newMyEvents = [...this.state.myEvents]    
+  const dispatch = useDispatch()
+  const { eventsList } = useSelector((state) => state.eventsList) 
 
-    const index = newEventsList.indexOf(newEventsList.find(item => item.id === eventId))
-    const myEvent = newEventsList.splice(index, 1)      
+  // const onJoinHandler = (eventId) => {    
+  //   const newEventsList = [...eventsList] 
+  //   const newMyEvents = [...myEvents]    
 
-    newMyEvents.push(...myEvent)   
+  //   const index = newEventsList.indexOf(newEventsList.find(item => item.id === eventId))
+  //   const myEvent = newEventsList.splice(index, 1)      
+
+  //   newMyEvents.push(...myEvent)   
+
+  //   //setEventsList(newEventsList)
+  //   setMyEventsList(newMyEvents)    
+  // }
+
+  // const onLeaveHandler = (eventId) => {
+  //   const newEventsList = [...eventsList] 
+  //   const newMyEvents = [...myEvents]    
+
+  //   const index = newMyEvents.indexOf(newMyEvents.find(item => item.id === eventId))
+  //   const myEvent = newMyEvents.splice(index, 1)      
+
+  //   newEventsList.push(...myEvent)   
     
-    this.setState({
-      eventsList: newEventsList,
-      myEvents: newMyEvents
-    })    
-  }
+  //   //setEventsList(newEventsList)
+  //   setMyEventsList(newMyEvents)   
+  // }  
 
-  onLeaveHandler = (eventId) => {
-    const newEventsList = [...this.state.eventsList] 
-    const newMyEvents = [...this.state.myEvents]    
+  useEffect(() => {   
+    dispatch(getEvents()).then(() => setLoading(false))       
+  }, [dispatch])
 
-    const index = newMyEvents.indexOf(newMyEvents.find(item => item.id === eventId))
-    const myEvent = newMyEvents.splice(index, 1)      
+  const list = eventsList.length ? 
+    <EventsList 
+      alone={true}
+      //onJoinClick={onJoinHandler} 
+      eventsList={[...eventsList].sort((a, b) => a.id - b.id)} 
+    /> 
+    : null   
 
-    newEventsList.push(...myEvent)   
-    
-    this.setState({
-      eventsList: newEventsList,
-      myEvents: newMyEvents
-    })   
-  }
+  // const myList = myEvents.length ? 
+  //   <EventsList 
+  //     alone={eventsList.length ? null : true}
+  //     onLeaveClick={onLeaveHandler} 
+  //     eventsList={myEvents.sort((a, b) => a.id - b.id)} 
+  //     isMyEvents={true} 
+  //   /> 
+  //   : null   
 
-  async componentDidMount() {
-    try {
-      const res = await axios.get('https://letsgo-react-default-rtdb.europe-west1.firebasedatabase.app/events.json')
-      const events = []  
-
-      Object.keys(res.data).forEach((key, i) => {
-        const ev = res.data[key]
-        ev.id = key
-        events.push(ev)
-      })    
-     
-      this.setState({
-        eventsList: events,
-        loading: false
-      })
-    } catch (error) {
-      console.error(error)
-    }    
-  }
-
-  render() {       
-    const list = this.state.eventsList.length ? 
-      <EventsList 
-        alone={this.state.myEvents.length ? null : true}
-        onJoinClick={this.onJoinHandler} 
-        eventsList={this.state.eventsList.sort((a, b) => a.id - b.id)} 
-      /> 
-      : null   
-
-    const myList = this.state.myEvents.length ? 
-      <EventsList 
-        alone={this.state.eventsList.length ? null : true}
-        onLeaveClick={this.onLeaveHandler} 
-        eventsList={this.state.myEvents.sort((a, b) => a.id - b.id)} 
-        isMyEvents={true} 
-      /> 
-      : null   
-
-    return (
-      <div className={classes.MainPage}>
-        <div className={classNames('container')}>
-          <h1>Let'sGo!</h1>
-          { this.state.loading
-            ? <Loader/>
-            : <div className={classes.MainPageContainer}>
-                <div className={classes.MainPageEvents}>            
-                  {myList}
-                  {list}              
-                </div>
-                <Link style={{alignSelf: 'center'}} className="button button--primary" to={'events/create'}>
-                  Create your own event!
-                </Link> 
+  return (
+    <div className={classes.MainPage}>
+      <div className={classNames('container')}>
+        <h1>Let'sGo!</h1>
+        { loading
+          ? <Loader/>
+          : <div className={classes.MainPageContainer}>
+              <div className={classes.MainPageEvents}>            
+                {/* {myList} */}
+                {list}              
               </div>
-          }                    
-        </div>        
-      </div>
-    )
-  }
+              <Link style={{alignSelf: 'center'}} className="button button--primary" to={'events/create'}>
+                Create your own event!
+              </Link> 
+            </div>
+        }                    
+      </div>        
+    </div>
+  )
 }
 
 export default MainPage
